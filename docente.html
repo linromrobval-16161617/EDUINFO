@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="es">
 
@@ -5,7 +6,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Panel Docente | Plataforma Escolar</title>
+    <title>Docentes | EDUINFO</title>
 
     <link rel="stylesheet" href="css/estilos.css">
 </head>
@@ -14,62 +15,49 @@
 
     <!-- ENCABEZADO -->
     <header class="page-header">
-
         <h1>👩‍🏫 Panel de Docentes</h1>
 
         <p>
-            Desde este espacio los docentes podrán publicar talleres,
-            guías, tareas y material de apoyo para que los estudiantes
-            continúen aprendiendo desde casa.
+            Publica talleres, guías, tareas y materiales de apoyo
+            para que los estudiantes continúen aprendiendo desde casa.
         </p>
-
     </header>
 
     <!-- MENÚ PRINCIPAL -->
     <nav class="menu-principal">
-
         <a href="index.html">Inicio</a>
         <a href="materias.html">Materias</a>
         <a href="docentes.html">Docentes</a>
         <a href="tareas.html">Tareas</a>
         <a href="contacto.html">Contacto</a>
-
     </nav>
 
-    <!-- FORMULARIO PARA PUBLICAR ACTIVIDADES -->
+    <!-- FORMULARIO -->
     <section class="teacher-section">
-
         <div class="teacher-card">
 
             <h2>📄 Publicar una actividad</h2>
 
-            <form action="#" method="post" enctype="multipart/form-data">
+            <form id="formActividad">
 
                 <div class="input-group">
                     <label for="docente">Nombre del docente</label>
-
-                    <input
-                        type="text"
-                        id="docente"
-                        name="docente"
-                        placeholder="Escriba su nombre completo"
-                        required>
+                    <input type="text" id="docente"
+                        placeholder="Escriba su nombre completo" required>
                 </div>
 
                 <div class="input-group">
                     <label for="grado">Nivel educativo</label>
-
-                    <select id="grado" name="grado" required>
+                    <select id="grado" required>
                         <option value="">Seleccione...</option>
-                        <option value="primaria">Básica Primaria</option>
-                        <option value="secundaria">Básica Secundaria</option>
+                        <option value="Básica Primaria">Básica Primaria</option>
+                        <option value="Básica Secundaria">Básica Secundaria</option>
                     </select>
                 </div>
 
                 <div class="input-group">
                     <label for="materia">Materia</label>
-
-                    <select id="materia" name="materia" required>
+                    <select id="materia" required>
                         <option value="">Seleccione...</option>
                         <option>Matemáticas</option>
                         <option>Lengua Castellana</option>
@@ -83,54 +71,93 @@
 
                 <div class="input-group">
                     <label for="titulo">Título de la actividad</label>
-
-                    <input
-                        type="text"
-                        id="titulo"
-                        name="titulo"
-                        placeholder="Ejemplo: Taller de Fracciones"
-                        required>
+                    <input type="text" id="titulo"
+                        placeholder="Ejemplo: Taller de fracciones" required>
                 </div>
 
                 <div class="input-group">
                     <label for="descripcion">Descripción</label>
-
-                    <textarea
-                        id="descripcion"
-                        name="descripcion"
-                        rows="5"
-                        placeholder="Escriba una descripción de la actividad..."
-                        required></textarea>
+                    <textarea id="descripcion" rows="5"
+                        placeholder="Describa la actividad..." required></textarea>
                 </div>
 
                 <div class="input-group">
-                    <label for="archivo">Subir archivo</label>
-
-                    <input
-                        type="file"
-                        id="archivo"
-                        name="archivo"
+                    <label for="archivo">Archivo (PDF, Word o PowerPoint)</label>
+                    <input type="file" id="archivo"
                         accept=".pdf,.doc,.docx,.ppt,.pptx">
                 </div>
 
                 <div class="buttons">
-
                     <button type="submit" class="btn-primary">
-                        📤 Publicar Actividad
+                        📤 Publicar actividad
                     </button>
 
                     <a href="index.html" class="btn-secondary">
-                        🏠 Volver al Inicio
+                        🏠 Volver al inicio
                     </a>
-
                 </div>
 
             </form>
 
-        </div>
+            <div id="resultado" aria-live="polite"></div>
 
+        </div>
     </section>
 
-</body>
+    <!-- FUNCIONALIDAD CON JAVASCRIPT -->
+    <script>
+        const formulario = document.getElementById("formActividad");
+        const resultado = document.getElementById("resultado");
 
+        formulario.addEventListener("submit", function (evento) {
+            evento.preventDefault();
+
+            const docente = document.getElementById("docente").value.trim();
+            const grado = document.getElementById("grado").value;
+            const materia = document.getElementById("materia").value;
+            const titulo = document.getElementById("titulo").value.trim();
+            const descripcion = document.getElementById("descripcion").value.trim();
+            const archivo = document.getElementById("archivo").files[0];
+
+            resultado.replaceChildren();
+
+            const tarjeta = document.createElement("article");
+            const encabezado = document.createElement("h3");
+            encabezado.textContent = "✅ " + titulo;
+            tarjeta.appendChild(encabezado);
+
+            const datos = [
+                "Docente: " + docente,
+                "Nivel: " + grado,
+                "Materia: " + materia,
+                "Descripción: " + descripcion,
+                "Archivo: " + (archivo ? archivo.name : "No se adjuntó archivo")
+            ];
+
+            datos.forEach(function (dato) {
+                const parrafo = document.createElement("p");
+                parrafo.textContent = dato;
+                tarjeta.appendChild(parrafo);
+            });
+
+            if (archivo) {
+                const enlace = document.createElement("a");
+                enlace.textContent = "Abrir archivo seleccionado";
+                enlace.href = URL.createObjectURL(archivo);
+                enlace.target = "_blank";
+                enlace.rel = "noopener";
+                tarjeta.appendChild(enlace);
+            }
+
+            resultado.appendChild(tarjeta);
+
+            const aviso = document.createElement("p");
+            aviso.textContent =
+                "Esta es una vista previa local. La actividad todavía no se ha guardado ni publicado para otros estudiantes.";
+            resultado.appendChild(aviso);
+        });
+    </script>
+
+</body>
 </html>
+

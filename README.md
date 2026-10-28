@@ -12,7 +12,7 @@ Por esta razón, EDUINFO busca facilitar la entrega y consulta de trabajos, tall
 
 ## Enlace de la página web
 
-[https://linromrobval-16161617.github.io/EDUINFO/](https://linromrobval-16161617.github.io/EDUINFO/)
+[https://linromrobval-16161617.github.io/EDUINFO/]
 
 ## Tecnologías utilizadas
 
