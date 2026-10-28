@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Panel Docente | Plataforma Escolar</title>
 
     <link rel="stylesheet" href="css/estilos.css">
@@ -12,7 +13,6 @@
 <body>
 
     <!-- ENCABEZADO -->
-
     <header class="page-header">
 
         <h1>👩‍🏫 Panel de Docentes</h1>
@@ -20,13 +20,23 @@
         <p>
             Desde este espacio los docentes podrán publicar talleres,
             guías, tareas y material de apoyo para que los estudiantes
-            continúen aprendiendo cuando no puedan asistir al colegio.
+            continúen aprendiendo desde casa.
         </p>
 
     </header>
 
-    <!-- FORMULARIO -->
+    <!-- MENÚ PRINCIPAL -->
+    <nav class="menu-principal">
 
+        <a href="index.html">Inicio</a>
+        <a href="materias.html">Materias</a>
+        <a href="docentes.html">Docentes</a>
+        <a href="tareas.html">Tareas</a>
+        <a href="contacto.html">Contacto</a>
+
+    </nav>
+
+    <!-- FORMULARIO PARA PUBLICAR ACTIVIDADES -->
     <section class="teacher-section">
 
         <div class="teacher-card">
@@ -36,38 +46,31 @@
             <form action="#" method="post" enctype="multipart/form-data">
 
                 <div class="input-group">
-
                     <label for="docente">Nombre del docente</label>
 
                     <input
                         type="text"
                         id="docente"
+                        name="docente"
                         placeholder="Escriba su nombre completo"
                         required>
-
                 </div>
 
                 <div class="input-group">
-
                     <label for="grado">Nivel educativo</label>
 
-                    <select id="grado">
-
-                        <option>Seleccione...</option>
-                        <option>Básica Primaria</option>
-                        <option>Básica Secundaria</option>
-
+                    <select id="grado" name="grado" required>
+                        <option value="">Seleccione...</option>
+                        <option value="primaria">Básica Primaria</option>
+                        <option value="secundaria">Básica Secundaria</option>
                     </select>
-
                 </div>
 
                 <div class="input-group">
-
                     <label for="materia">Materia</label>
 
-                    <select id="materia">
-
-                        <option>Seleccione...</option>
+                    <select id="materia" name="materia" required>
+                        <option value="">Seleccione...</option>
                         <option>Matemáticas</option>
                         <option>Lengua Castellana</option>
                         <option>Ciencias Naturales</option>
@@ -75,41 +78,39 @@
                         <option>Tecnología e Informática</option>
                         <option>Inglés</option>
                         <option>Educación Artística</option>
-
                     </select>
-
                 </div>
 
                 <div class="input-group">
-
                     <label for="titulo">Título de la actividad</label>
 
                     <input
                         type="text"
                         id="titulo"
-                        placeholder="Ejemplo: Taller de Fracciones">
-
+                        name="titulo"
+                        placeholder="Ejemplo: Taller de Fracciones"
+                        required>
                 </div>
 
                 <div class="input-group">
-
                     <label for="descripcion">Descripción</label>
 
                     <textarea
                         id="descripcion"
+                        name="descripcion"
                         rows="5"
-                        placeholder="Escriba una breve descripción de la actividad..."></textarea>
-
+                        placeholder="Escriba una descripción de la actividad..."
+                        required></textarea>
                 </div>
 
                 <div class="input-group">
-
                     <label for="archivo">Subir archivo</label>
 
                     <input
                         type="file"
-                        id="archivo">
-
+                        id="archivo"
+                        name="archivo"
+                        accept=".pdf,.doc,.docx,.ppt,.pptx">
                 </div>
 
                 <div class="buttons">

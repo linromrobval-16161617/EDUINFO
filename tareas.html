@@ -1,147 +1,171 @@
+```html
 <!DOCTYPE html>
 <html lang="es">
 
 <head>
-
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Tareas | Plataforma Escolar</title>
-
     <link rel="stylesheet" href="css/estilos.css">
-
 </head>
 
 <body>
 
     <!-- ENCABEZADO -->
-
     <header class="page-header">
-
         <h1>📚 Tareas y Actividades</h1>
-
         <p>
-            Consulta las actividades publicadas por los docentes.
-            Descarga guías, talleres, evaluaciones y material de apoyo
-            para continuar con tu proceso de aprendizaje desde casa.
+            Encuentra las actividades de cada materia y continúa
+            aprendiendo desde casa.
         </p>
-
     </header>
 
-    <!-- TAREAS DE PRIMARIA -->
+    <!-- MENÚ PRINCIPAL -->
+    <nav class="menu-principal">
+        <a href="index.html">Inicio</a>
+        <a href="materias.html">Materias</a>
+        <a href="docentes.html">Docentes</a>
+        <a href="tareas.html">Tareas</a>
+        <a href="contacto.html">Contacto</a>
+    </nav>
 
-    <section class="task-section">
+    <main>
 
-        <h2 class="level-title">🎒 Básica Primaria</h2>
+        <!-- BÁSICA PRIMARIA -->
+        <section class="task-section">
+            <h2 class="level-title">🎒 Básica Primaria</h2>
 
-        <div class="task-grid">
+            <div class="task-grid">
 
-            <div class="task-card">
+                <article class="task-card">
+                    <div class="task-icon">📘</div>
+                    <h3>Matemáticas Básica</h3>
+                    <p><strong>Actividad:</strong> Taller de fracciones y operaciones básicas.</p>
+                    <p><strong>Material:</strong> Guía de ejercicios.</p>
+                    <a href="archivos/matematicas-primaria.pdf"
+                       class="download-btn" download>
+                        📥 Descargar PDF
+                    </a>
+                </article>
 
-                <div class="task-icon">📘</div>
+                <article class="task-card">
+                    <div class="task-icon">📖</div>
+                    <h3>Lengua Castellana</h3>
+                    <p><strong>Actividad:</strong> Comprensión lectora y ortografía.</p>
+                    <p><strong>Material:</strong> Taller de lectura.</p>
+                    <a href="archivos/lengua-castellana.pdf"
+                       class="download-btn" download>
+                        📥 Descargar PDF
+                    </a>
+                </article>
 
-                <h3>Matemáticas</h3>
+                <article class="task-card">
+                    <div class="task-icon">🧪</div>
+                    <h3>Ciencias Naturales</h3>
+                    <p><strong>Actividad:</strong> Los seres vivos y sus características.</p>
+                    <p><strong>Material:</strong> Guía de ciencias.</p>
+                    <a href="archivos/ciencias-primaria.pdf"
+                       class="download-btn" download>
+                        📥 Descargar PDF
+                    </a>
+                </article>
 
-                <p><strong>Actividad:</strong> Taller de Fracciones.</p>
-
-                <p>Fecha de publicación: 15/07/2026</p>
-
-                <a href="#" class="download-btn">
-                    📥 Descargar PDF
-                </a>
+                <article class="task-card">
+                    <div class="task-icon">🌎</div>
+                    <h3>Sociales</h3>
+                    <p><strong>Actividad:</strong> Regiones naturales de Colombia.</p>
+                    <p><strong>Material:</strong> Taller de geografía.</p>
+                    <a href="archivos/sociales-primaria.pdf"
+                       class="download-btn" download>
+                        📥 Descargar PDF
+                    </a>
+                </article>
 
             </div>
+        </section>
 
-            <div class="task-card">
+        <!-- BÁSICA SECUNDARIA -->
+        <section class="task-section">
+            <h2 class="level-title">🎓 Básica Secundaria</h2>
 
-                <div class="task-icon">🌎</div>
+            <div class="task-grid">
 
-                <h3>Sociales</h3>
+                <article class="task-card">
+                    <div class="task-icon">➗</div>
+                    <h3>Matemáticas</h3>
+                    <p><strong>Actividad:</strong> Álgebra y resolución de ecuaciones.</p>
+                    <p><strong>Material:</strong> Taller de ejercicios.</p>
+                    <a href="archivos/matematicas-secundaria.pdf"
+                       class="download-btn" download>
+                        📥 Descargar PDF
+                    </a>
+                </article>
 
-                <p><strong>Actividad:</strong> Regiones Naturales.</p>
+                <article class="task-card">
+                    <div class="task-icon">⚗️</div>
+                    <h3>Química</h3>
+                    <p><strong>Actividad:</strong> Elementos de la tabla periódica.</p>
+                    <p><strong>Material:</strong> Guía de química.</p>
+                    <a href="archivos/quimica.pdf"
+                       class="download-btn" download>
+                        📥 Descargar PDF
+                    </a>
+                </article>
 
-                <p>Fecha de publicación: 16/07/2026</p>
+                <article class="task-card">
+                    <div class="task-icon">⚡</div>
+                    <h3>Física</h3>
+                    <p><strong>Actividad:</strong> Movimiento, fuerza y energía.</p>
+                    <p><strong>Material:</strong> Taller de física.</p>
+                    <a href="archivos/fisica.pdf"
+                       class="download-btn" download>
+                        📥 Descargar PDF
+                    </a>
+                </article>
 
-                <a href="#" class="download-btn">
-                    📥 Descargar PDF
-                </a>
+                <article class="task-card">
+                    <div class="task-icon">💻</div>
+                    <h3>Tecnología e Informática</h3>
+                    <p><strong>Actividad:</strong> Introducción a Scratch y HTML.</p>
+                    <p><strong>Material:</strong> Guía de tecnología.</p>
+                    <a href="archivos/tecnologia.pdf"
+                       class="download-btn" download>
+                        📥 Descargar PDF
+                    </a>
+                </article>
+
+                <article class="task-card">
+                    <div class="task-icon">🇺🇸</div>
+                    <h3>Inglés</h3>
+                    <p><strong>Actividad:</strong> Verbo To Be y vocabulario.</p>
+                    <p><strong>Material:</strong> Taller de inglés.</p>
+                    <a href="archivos/ingles.pdf"
+                       class="download-btn" download>
+                        📥 Descargar PDF
+                    </a>
+                </article>
+
+                <article class="task-card">
+                    <div class="task-icon">🎨</div>
+                    <h3>Educación Artística</h3>
+                    <p><strong>Actividad:</strong> Dibujo, color y creatividad.</p>
+                    <p><strong>Material:</strong> Guía artística.</p>
+                    <a href="archivos/artistica.pdf"
+                       class="download-btn" download>
+                        📥 Descargar PDF
+                    </a>
+                </article>
 
             </div>
+        </section>
 
+        <!-- VOLVER AL INICIO -->
+        <div class="back-home">
+            <a href="index.html">🏠 Volver al Inicio</a>
         </div>
 
-    </section>
-
-    <!-- TAREAS DE SECUNDARIA -->
-
-    <section class="task-section">
-
-        <h2 class="level-title">🎓 Básica Secundaria</h2>
-
-        <div class="task-grid">
-
-            <div class="task-card">
-
-                <div class="task-icon">🧪</div>
-
-                <h3>Ciencias Naturales</h3>
-
-                <p><strong>Actividad:</strong> Ecosistemas Colombianos.</p>
-
-                <p>Fecha de publicación: 17/07/2026</p>
-
-                <a href="#" class="download-btn">
-                    📥 Descargar PDF
-                </a>
-
-            </div>
-
-            <div class="task-card">
-
-                <div class="task-icon">💻</div>
-
-                <h3>Tecnología</h3>
-
-                <p><strong>Actividad:</strong> Introducción a Scratch.</p>
-
-                <p>Fecha de publicación: 18/07/2026</p>
-
-                <a href="#" class="download-btn">
-                    📥 Descargar PDF
-                </a>
-
-            </div>
-
-            <div class="task-card">
-
-                <div class="task-icon">🇺🇸</div>
-
-                <h3>Inglés</h3>
-
-                <p><strong>Actividad:</strong> Verb To Be.</p>
-
-                <p>Fecha de publicación: 19/07/2026</p>
-
-                <a href="#" class="download-btn">
-                    📥 Descargar PDF
-                </a>
-
-            </div>
-
-        </div>
-
-    </section>
-
-    <!-- BOTÓN VOLVER -->
-
-    <div class="back-home">
-
-        <a href="index.html">
-            🏠 Volver al Inicio
-        </a>
-
-    </div>
+    </main>
 
 </body>
-
 </html>
