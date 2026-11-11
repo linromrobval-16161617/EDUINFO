@@ -1,31 +1,62 @@
+
 <!DOCTYPE html>
 <html lang="es">
 
 <head>
-
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Contacto | Plataforma Escolar</title>
+    <title>Contacto | EDUINFO</title>
 
     <link rel="stylesheet" href="css/estilos.css">
 
+    <style>
+        .icon-whatsapp {
+            width: 45px;
+            height: 45px;
+            object-fit: contain;
+        }
+
+        .whatsapp-btn {
+            display: inline-block;
+            background: #25D366;
+            color: white;
+            padding: 12px 22px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: bold;
+            margin-top: 10px;
+            transition: 0.3s;
+        }
+
+        .whatsapp-btn:hover {
+            background: #128C7E;
+            transform: scale(1.05);
+        }
+    </style>
 </head>
 
 <body>
 
     <!-- ENCABEZADO -->
     <header class="page-header">
-
         <h1>📞 Contáctanos</h1>
 
         <p>
             Si tienes dudas sobre las actividades, el uso de la plataforma
-            o necesitas ayuda, puedes comunicarte con nosotros mediante el
-            siguiente formulario.
+            o necesitas ayuda, puedes comunicarte con nosotros mediante
+            el siguiente formulario.
         </p>
-
     </header>
+
+    <!-- MENÚ PRINCIPAL -->
+    <nav class="menu-principal">
+        <a href="index.html">Inicio</a>
+        <a href="Materia.html">Materia</a>
+        <a href="docente.html">Docentes</a>
+        <a href="tareas.html">Tareas</a>
+        <a href="contacto.html">Contacto</a>
+    </nav>
 
     <!-- FORMULARIO -->
     <section class="contact-section">
@@ -38,36 +69,25 @@
 
                 <div class="input-group">
                     <label for="nombre">Nombre Completo</label>
-                    <input
-                        type="text"
-                        id="nombre"
-                        placeholder="Ingrese su nombre completo"
-                        required>
+                    <input type="text" id="nombre"
+                        placeholder="Ingrese su nombre completo" required>
                 </div>
 
                 <div class="input-group">
                     <label for="correo">Correo Electrónico</label>
-                    <input
-                        type="email"
-                        id="correo"
-                        placeholder="ejemplo@correo.com"
-                        required>
+                    <input type="email" id="correo"
+                        placeholder="ejemplo@correo.com" required>
                 </div>
 
                 <div class="input-group">
                     <label for="asunto">Asunto</label>
-                    <input
-                        type="text"
-                        id="asunto"
-                        placeholder="Escriba el asunto"
-                        required>
+                    <input type="text" id="asunto"
+                        placeholder="Escriba el asunto" required>
                 </div>
 
                 <div class="input-group">
-                    <label for="Mensaje">Mensaje</label>
-                    <textarea
-                        id="mensaje"
-                        rows="6"
+                    <label for="mensaje">Mensaje</label>
+                    <textarea id="mensaje" rows="6"
                         placeholder="Escriba aquí su mensaje..."
                         required></textarea>
                 </div>
@@ -85,19 +105,15 @@
                 </div>
 
             </form>
-
         </div>
-
     </section>
 
     <!-- INFORMACIÓN DE CONTACTO -->
     <section class="contact-info">
 
-        <!-- Correo -->
+        <!-- CORREO -->
         <div class="info-card">
-
             <div class="info-icon">📧</div>
-
             <h3>Correo</h3>
 
             <p>
@@ -105,29 +121,37 @@
                     plataformaescolar@colegio.edu.co
                 </a>
             </p>
-
         </div>
 
-        <!-- WhatsApp -->
+        <!-- WHATSAPP -->
         <div class="info-card">
 
-           <div class="info-icon">
-           <img src="whatsapp.png" alt="WhatsApp" class="icon-whatsapp">
-           </div>
+            <div class="info-icon">
+                <img
+                    src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg"
+                    alt="WhatsApp"
+                    class="icon-whatsapp">
+            </div>
 
             <h3>WhatsApp</h3>
 
             <p>
-                <a href="https://wa.me/573125393315" target="_blank">
-                    (+57) 3125393315
+                <a href="https://wa.me/573125393315" target="_blank"
+                    rel="noopener noreferrer">
+                    (+57) 312 539 3315
                 </a>
-
-            
             </p>
+
+            <a href="https://wa.me/573125393315"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="whatsapp-btn">
+                🟢 Escribir por WhatsApp
+            </a>
 
         </div>
 
-        <!-- Ubicación -->
+        <!-- UBICACIÓN -->
         <div class="info-card">
 
             <div class="info-icon">🗺️</div>
@@ -135,7 +159,9 @@
             <h3>Ubicación</h3>
 
             <p>
-                <a href="https://maps.google.com/?q=Institución+Educativa+Santa+Teresa+de+Pachaquiaro" target="_blank">
+                <a href="https://maps.google.com/?q=Institución+Educativa+Santa+Teresa+de+Pachaquiaro"
+                    target="_blank"
+                    rel="noopener noreferrer">
                     Institución Educativa Santa Teresa de Pachaquiaro
                 </a>
             </p>
@@ -147,14 +173,14 @@
     <!-- SCRIPT PARA ENVIAR A WHATSAPP -->
     <script>
 
-        document.getElementById("contactForm").addEventListener("submit", function (e) {
+        document.getElementById("contactForm").addEventListener("submit", function(e) {
 
             e.preventDefault();
 
-            let nombre = document.getElementById("nombre").value;
-            let correo = document.getElementById("correo").value;
-            let asunto = document.getElementById("asunto").value;
-            let mensaje = document.getElementById("mensaje").value;
+            let nombre = document.getElementById("nombre").value.trim();
+            let correo = document.getElementById("correo").value.trim();
+            let asunto = document.getElementById("asunto").value.trim();
+            let mensaje = document.getElementById("mensaje").value.trim();
 
             let texto =
 `📚 *Nuevo mensaje desde EDUINFO*
@@ -168,18 +194,17 @@
 💬 Mensaje:
 ${mensaje}`;
 
-           <a href="https://wa.me/573125393315" 
-   target="_blank" 
-   class="whatsapp-btn">
-    <span>🟢</span> WhatsApp
-</a>
+            let numero = "573125393315";
 
-          
+            let url = `https://wa.me/${numero}?text=${encodeURIComponent(texto)}`;
+
+            window.open(url, "_blank");
+
+            this.reset();
 
         });
 
     </script>
 
 </body>
-
 </html>

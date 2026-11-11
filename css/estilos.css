@@ -936,22 +936,31 @@ css
     .menu-principal a {
         font-size: 16px;
     }
+.whatsapp-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50px;
+    height: 50px;
+    background: #25D366;
+    color: white;
+    border-radius: 50%;
+    font-size: 30px;
+    font-weight: bold;
 }
+
 .whatsapp-btn {
     display: inline-block;
     background: #25D366;
     color: white;
-    padding: 13px 25px;
-    border-radius: 30px;
+    padding: 12px 22px;
+    border-radius: 25px;
     text-decoration: none;
     font-weight: bold;
-    transition: 0.3s;
+    margin-top: 10px;
 }
 
 .whatsapp-btn:hover {
     background: #128C7E;
-    transform: scale(1.05);
 }
-
-
-
+}
