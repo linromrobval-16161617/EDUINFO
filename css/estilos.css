@@ -937,7 +937,21 @@ css
         font-size: 16px;
     }
 }
+.whatsapp-btn {
+    display: inline-block;
+    background: #25D366;
+    color: white;
+    padding: 13px 25px;
+    border-radius: 30px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: 0.3s;
+}
 
+.whatsapp-btn:hover {
+    background: #128C7E;
+    transform: scale(1.05);
+}
 
 
 
