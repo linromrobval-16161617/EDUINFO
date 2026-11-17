@@ -1,4 +1,4 @@
-```html
+
 <!DOCTYPE html>
 <html lang="es">
 
@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Tareas | Plataforma Escolar</title>
+    <title>Tareas | EDUINFO</title>
     <link rel="stylesheet" href="css/estilos.css">
 </head>
 
@@ -32,8 +32,29 @@
 
     <main>
 
+        <!-- ACTIVIDADES PUBLICADAS POR DOCENTES -->
+        <section class="task-section">
+
+            <h2 class="level-title">
+                📤 Nuevas actividades de los docentes
+            </h2>
+
+            <p>
+                Aquí aparecen los talleres, guías y documentos
+                publicados desde el panel docente.
+            </p>
+
+            <p id="estadoActividades">
+                Cargando actividades...
+            </p>
+
+            <div class="task-grid" id="actividadesPublicadas"></div>
+
+        </section>
+
         <!-- BÁSICA PRIMARIA -->
         <section class="task-section">
+
             <h2 class="level-title">🎒 Básica Primaria</h2>
 
             <div class="task-grid">
@@ -87,6 +108,7 @@
 
         <!-- BÁSICA SECUNDARIA -->
         <section class="task-section">
+
             <h2 class="level-title">🎓 Básica Secundaria</h2>
 
             <div class="task-grid">
@@ -167,5 +189,109 @@
 
     </main>
 
+    <!-- CONEXIÓN CON DOCENTE.HTML SIN FIREBASE -->
+    <script>
+
+    const CLAVE = "EDUINFO_ACTIVIDADES";
+
+    function mostrarActividades() {
+
+        const contenedor = document.getElementById("actividadesPublicadas");
+        const estado = document.getElementById("estadoActividades");
+
+        contenedor.innerHTML = "";
+
+        let actividades = [];
+
+        try {
+            actividades = JSON.parse(localStorage.getItem(CLAVE) || "[]");
+        } catch (error) {
+            estado.textContent = "No se pudieron leer las actividades guardadas.";
+            return;
+        }
+
+        if (actividades.length === 0) {
+            estado.textContent =
+                "Todavía no hay nuevas actividades publicadas.";
+            return;
+        }
+
+        estado.textContent = "✅ Actividades disponibles: " + actividades.length;
+
+        // Mostrar las actividades más recientes primero
+        actividades.slice().reverse().forEach(datos => {
+
+            const tarjeta = document.createElement("article");
+            tarjeta.className = "task-card";
+
+            const icono = document.createElement("div");
+            icono.className = "task-icon";
+            icono.textContent = "📚";
+
+            const nivel = document.createElement("p");
+            nivel.textContent = "Nivel: " + (datos.grado || "");
+
+            const titulo = document.createElement("h3");
+            titulo.textContent = datos.materia || "Actividad";
+
+            const nombreActividad = document.createElement("p");
+            nombreActividad.textContent =
+                "Actividad: " + (datos.titulo || "");
+
+            const descripcion = document.createElement("p");
+            descripcion.textContent =
+                "Descripción: " + (datos.descripcion || "");
+
+            const docente = document.createElement("p");
+            docente.textContent =
+                "Docente: " + (datos.docente || "");
+
+            tarjeta.append(
+                icono,
+                nivel,
+                titulo,
+                nombreActividad,
+                descripcion,
+                docente
+            );
+
+            if (datos.archivo) {
+
+                const ver = document.createElement("a");
+                ver.href = datos.archivo;
+                ver.target = "_blank";
+                ver.rel = "noopener noreferrer";
+                ver.className = "download-btn";
+                ver.textContent = "📄 Ver documento";
+
+                const descargar = document.createElement("a");
+                descargar.href = datos.archivo;
+                descargar.download = datos.nombreArchivo || "actividad";
+                descargar.className = "download-btn";
+                descargar.textContent = "📥 Descargar documento";
+
+                tarjeta.append(ver, descargar);
+
+            } else {
+
+                const sinArchivo = document.createElement("p");
+                sinArchivo.textContent = "No se adjuntó ningún documento.";
+
+                tarjeta.appendChild(sinArchivo);
+
+            }
+
+            contenedor.appendChild(tarjeta);
+
+        });
+
+    }
+
+    // Mostrar las actividades guardadas
+    mostrarActividades();
+
+    </script>
+
 </body>
 </html>
+

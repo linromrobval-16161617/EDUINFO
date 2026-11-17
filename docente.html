@@ -1,9 +1,12 @@
 
+
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Docentes | EDUINFO</title>
     <link rel="stylesheet" href="css/estilos.css">
 </head>
@@ -24,6 +27,7 @@
 </nav>
 
 <main class="teacher-section">
+
     <div class="teacher-card">
 
         <h2>📄 Publicar una actividad</h2>
@@ -90,19 +94,262 @@
 
         </form>
 
-        <section id="resultado" hidden>
+        <p id="mensaje"></p>
+
+        <!-- ACTIVIDADES PUBLICADAS -->
+
+        <section id="resultado">
+
             <h2>✅ Actividades publicadas</h2>
-            <div id="contenidoActividad"></div>
+
+            <div id="actividadesPublicadas"></div>
+
         </section>
 
     </div>
+
 </main>
 
-<script src="js/actividades.js"></script>
+<script>
+
+const CLAVE = "EDUINFO_ACTIVIDADES";
+
+function obtenerActividades() {
+    return JSON.parse(localStorage.getItem(CLAVE) || "[]");
+}
+
+function guardarActividades(actividades) {
+    localStorage.setItem(CLAVE, JSON.stringify(actividades));
+}
+
+// PUBLICAR ACTIVIDAD
+
+document.getElementById("formActividad")
+.addEventListener("submit", function(e) {
+
+    e.preventDefault();
+
+    const docente = document.getElementById("docente").value.trim();
+    const grado = document.getElementById("grado").value;
+    const materia = document.getElementById("Materia").value;
+    const titulo = document.getElementById("titulo").value.trim();
+    const descripcion = document.getElementById("descripcion").value.trim();
+    const archivo = document.getElementById("archivo").files[0];
+
+    const mensaje = document.getElementById("mensaje");
+
+    if (archivo && archivo.size > 5 * 1024 * 1024) {
+        alert("El archivo no debe superar los 5 MB.");
+        return;
+    }
+
+    const extensiones = [".pdf", ".doc", ".docx", ".ppt", ".pptx"];
+
+    if (archivo) {
+
+        const nombre = archivo.name.toLowerCase();
+
+        if (!extensiones.some(ext => nombre.endsWith(ext))) {
+            alert("Selecciona un PDF, Word o PowerPoint válido.");
+            return;
+        }
+    }
+
+    function guardarPublicacion(contenido) {
+
+        const actividad = {
+            id: Date.now() + "-" + Math.random(),
+            docente,
+            grado,
+            materia,
+            titulo,
+            descripcion,
+            nombreArchivo: archivo ? archivo.name : "",
+            archivo: contenido,
+            fecha: new Date().toISOString()
+        };
+
+        try {
+
+            const actividades = obtenerActividades();
+
+            actividades.push(actividad);
+
+            guardarActividades(actividades);
+
+            mensaje.textContent = "¡Actividad publicada correctamente!";
+
+            document.getElementById("formActividad").reset();
+
+            mostrarActividades();
+
+        } catch (error) {
+
+            mensaje.textContent = "No hay espacio suficiente para guardar el documento. Intenta con un archivo más pequeño.";
+
+        }
+    }
+
+    if (archivo) {
+
+        const lector = new FileReader();
+
+        lector.onload = function() {
+            guardarPublicacion(lector.result);
+        };
+
+        lector.onerror = function() {
+            mensaje.textContent = "No se pudo leer el archivo.";
+        };
+
+        lector.readAsDataURL(archivo);
+
+    } else {
+
+        guardarPublicacion(null);
+
+    }
+
+});
+
+// MOSTRAR ACTIVIDADES
+
+function mostrarActividades() {
+
+    const contenedor = document.getElementById("actividadesPublicadas");
+
+    const actividades = obtenerActividades();
+
+    contenedor.innerHTML = "";
+
+    const niveles = [
+        {
+            nombre: "Básica Primaria",
+            materias: [
+                "Matemáticas Básica",
+                "Lengua Castellana",
+                "Ciencias Naturales",
+                "Sociales"
+            ]
+        },
+        {
+            nombre: "Básica Secundaria",
+            materias: [
+                "Matemáticas",
+                "Química",
+                "Física",
+                "Tecnología e Informática",
+                "Inglés",
+                "Educación Artística"
+            ]
+        }
+    ];
+
+    niveles.forEach(nivel => {
+
+        const seccion = document.createElement("section");
+        seccion.className = "task-section";
+
+        const encabezado = document.createElement("h2");
+
+        encabezado.textContent =
+            nivel.nombre === "Básica Primaria"
+            ? "🎒 " + nivel.nombre
+            : "🎓 " + nivel.nombre;
+
+        seccion.appendChild(encabezado);
+
+        nivel.materias.forEach(materia => {
+
+            const grupo = actividades.filter(a =>
+                a.grado === nivel.nombre &&
+                a.materia === materia
+            );
+
+            if (grupo.length === 0) return;
+
+            const subtitulo = document.createElement("h3");
+            subtitulo.textContent = "📚 " + materia;
+
+            seccion.appendChild(subtitulo);
+
+            grupo.forEach(actividad => {
+
+                const tarjeta = document.createElement("article");
+                tarjeta.className = "task-card";
+
+                const titulo = document.createElement("h3");
+                titulo.textContent = actividad.titulo;
+
+                const docente = document.createElement("p");
+                docente.textContent = "Docente: " + actividad.docente;
+
+                const descripcion = document.createElement("p");
+                descripcion.textContent = actividad.descripcion;
+
+                const nivelTexto = document.createElement("p");
+                nivelTexto.textContent = "Nivel: " + actividad.grado;
+
+                tarjeta.append(
+                    titulo,
+                    docente,
+                    descripcion,
+                    nivelTexto
+                );
+
+                if (actividad.archivo) {
+
+                    const enlace = document.createElement("a");
+
+                    enlace.href = actividad.archivo;
+                    enlace.download = actividad.nombreArchivo;
+                    enlace.className = "download-btn";
+                    enlace.textContent = "📥 Descargar material";
+
+                    tarjeta.appendChild(enlace);
+
+                }
+
+                const eliminar = document.createElement("button");
+
+                eliminar.type = "button";
+                eliminar.className = "btn-secondary";
+                eliminar.textContent = "🗑️ Eliminar";
+
+                eliminar.addEventListener("click", function() {
+
+                    if (!confirm("¿Deseas eliminar esta actividad?")) return;
+
+                    const actualizadas = obtenerActividades()
+                        .filter(a => a.id !== actividad.id);
+
+                    guardarActividades(actualizadas);
+
+                    mostrarActividades();
+
+                    mensaje.textContent = "Actividad eliminada.";
+
+                });
+
+                tarjeta.appendChild(eliminar);
+
+                seccion.appendChild(tarjeta);
+
+            });
+
+        });
+
+        contenedor.appendChild(seccion);
+
+    });
+
+}
+
+// CARGAR ACTIVIDADES AL ABRIR LA PÁGINA
+
+mostrarActividades();
+
+</script>
 
 </body>
 </html>
-
-
-```
-

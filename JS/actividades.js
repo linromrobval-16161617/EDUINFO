@@ -197,3 +197,172 @@ if (paginaMateria) {
 
     mostrarActividades();
 }
+
+// Obtener las actividades guardadas
+function obtenerActividades() {
+    return JSON.parse(
+        localStorage.getItem("actividadesEDUINFO") || "[]"
+    );
+}
+
+// Guardar una actividad
+function guardarActividad(actividad) {
+    const actividades = obtenerActividades();
+
+    actividades.push(actividad);
+
+    localStorage.setItem(
+        "actividadesEDUINFO",
+        JSON.stringify(actividades)
+    );
+}
+
+// Mostrar actividades
+function mostrarActividades() {
+    const contenedor = document.getElementById(
+        "actividadesPublicadas"
+    );
+
+    if (!contenedor) return;
+
+    const actividades = obtenerActividades();
+
+    contenedor.innerHTML = "";
+
+    actividades.forEach((actividad, indice) => {
+        const tarjeta = document.createElement("article");
+        tarjeta.className = "task-card";
+
+        const titulo = document.createElement("h3");
+        titulo.textContent = "📘 " + actividad.materia;
+
+        const nombre = document.createElement("p");
+        nombre.textContent = "Actividad: " + actividad.nombre;
+
+        const docente = document.createElement("p");
+        docente.textContent = "Docente: " + actividad.docente;
+
+        const enlace = document.createElement("a");
+        enlace.href = actividad.pdf;
+        enlace.download = actividad.archivo;
+        enlace.className = "download-btn";
+        enlace.textContent = "📥 Descargar PDF";
+
+        tarjeta.append(titulo, nombre, docente, enlace);
+
+        contenedor.appendChild(tarjeta);
+    });
+}
+
+// Obtener las actividades guardadas
+function obtenerActividades() {
+    return JSON.parse(
+        localStorage.getItem("actividadesEDUINFO") || "[]"
+    );
+}
+
+// Guardar una actividad
+function guardarActividad(actividad) {
+    const actividades = obtenerActividades();
+
+    actividades.push(actividad);
+
+    localStorage.setItem(
+        "actividadesEDUINFO",
+        JSON.stringify(actividades)
+    );
+}
+
+// Mostrar actividades
+function mostrarActividades() {
+    const contenedor = document.getElementById(
+        "actividadesPublicadas"
+    );
+
+    if (!contenedor) return;
+
+    const actividades = obtenerActividades();
+
+    contenedor.innerHTML = "";
+
+    actividades.forEach((actividad, indice) => {
+        const tarjeta = document.createElement("article");
+        tarjeta.className = "task-card";
+
+        const titulo = document.createElement("h3");
+        titulo.textContent = "📘 " + actividad.materia;
+
+        const nombre = document.createElement("p");
+        nombre.textContent = "Actividad: " + actividad.nombre;
+
+        const docente = document.createElement("p");
+        docente.textContent = "Docente: " + actividad.docente;
+
+        const enlace = document.createElement("a");
+        enlace.href = actividad.pdf;
+        enlace.download = actividad.archivo;
+        enlace.className = "download-btn";
+        enlace.textContent = "📥 Descargar PDF";
+
+        tarjeta.append(titulo, nombre, docente, enlace);
+
+        contenedor.appendChild(tarjeta);
+    });
+}
+
+// Obtener las actividades guardadas
+function obtenerActividades() {
+    return JSON.parse(
+        localStorage.getItem("actividadesEDUINFO") || "[]"
+    );
+}
+
+// Guardar una actividad
+function guardarActividad(actividad) {
+    const actividades = obtenerActividades();
+
+    actividades.push(actividad);
+
+    localStorage.setItem(
+        "actividadesEDUINFO",
+        JSON.stringify(actividades)
+    );
+}
+
+// Mostrar actividades
+function mostrarActividades() {
+    const contenedor = document.getElementById(
+        "actividadesPublicadas"
+    );
+
+    if (!contenedor) return;
+
+    const actividades = obtenerActividades();
+
+    contenedor.innerHTML = "";
+
+    actividades.forEach((actividad, indice) => {
+        const tarjeta = document.createElement("article");
+        tarjeta.className = "task-card";
+
+        const titulo = document.createElement("h3");
+        titulo.textContent = "📘 " + actividad.materia;
+
+        const nombre = document.createElement("p");
+        nombre.textContent = "Actividad: " + actividad.nombre;
+
+        const docente = document.createElement("p");
+        docente.textContent = "Docente: " + actividad.docente;
+
+        const enlace = document.createElement("a");
+        enlace.href = actividad.pdf;
+        enlace.download = actividad.archivo;
+        enlace.className = "download-btn";
+        enlace.textContent = "📥 Descargar PDF";
+
+        tarjeta.append(titulo, nombre, docente, enlace);
+
+        contenedor.appendChild(tarjeta);
+    });
+}
+
